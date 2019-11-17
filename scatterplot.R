@@ -4,7 +4,6 @@ library(ggplot)
 library(plotly)
 sleep_data <- read.csv("data/sleep_study.csv") %>%
   select(GPA, DepressionScore, AnxietyScore, StressScore, AlcoholUse, AverageSleep, Drinks)
-View(sleep_data)
 scatterplot <- sleep_data %>%
   ggplot(aes(x = AverageSleep, y = Drinks,
              text = paste0("Depression Score: ", DepressionScore,

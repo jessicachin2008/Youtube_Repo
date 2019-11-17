@@ -3,7 +3,7 @@ shinyUI(fluidPage(
   titlePanel(title = "test"),
   sliderInput(
     inputId = "sleep",
-    label = "sleep of subjects",
+    label = "Average hours of sleep per night",
     min = 1,
     max = 24,
     value = 7
