@@ -7,5 +7,8 @@ shinyUI(fluidPage(
     min = 1,
     max = 24,
     value = 7
+  ),
+  fluidRow(
+    imageOutput("img1")
   )
 ))
