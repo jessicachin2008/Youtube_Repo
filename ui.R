@@ -21,7 +21,7 @@ shinyUI(fluidPage(
                                           "Stress Score" = "StressScore", "Number of Drinks" = "Drinks",
                                           "Average Sleep" = "AverageSleep"), 
                            selected = 1),
-               plotOutput('trend'),
+               plotOutput('trend')
              )),
     tabPanel("Slider",
              sidebarPanel(
@@ -52,7 +52,11 @@ shinyUI(fluidPage(
                actionButton("simulate", label = "Simulate"),
                hr(),
                actionButton("reset", label = "Reset")
-             ))),
+             )),
+    tabPanel("About",
+             mainPanel(
+               h5("This will include a description of our teammates and reason for the project.")
+             )))
 
   )
 )
