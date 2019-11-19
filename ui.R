@@ -28,8 +28,8 @@ shinyUI(fluidPage(
              sliderInput(
                inputId = "sleep",
                label = "Average hours of sleep per night",
-               min = 1,
-               max = 24,
+               min = 3,
+               max = 11,
                value = 7
              ),
              imageOutput("img1")),
