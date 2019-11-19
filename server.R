@@ -14,16 +14,16 @@ shinyServer(
       geom_bar()})
     output$img1 <- renderImage({   #This is where the image is set 
       if(input$sleep >= 3 && input$sleep < 5){            
-        list(src = "dead.png", height = 331, width = 300)
+        list(src = "pictures/Dead.png", height = 331, width = 300)
       }                                        
       else if(input$sleep >= 5 && input$sleep < 7){
-        list(src = "Tired.png", height = 331, width = 300)
+        list(src = "pictures/Tired.png", height = 331, width = 300)
       }
       else if(input$sleep >= 7 && input$sleep <= 9){
-        list(src = "Healthy.png", height = 331, width = 300)
+        list(src = "pictures/Healthy.png", height = 331, width = 300)
       }
       else if(input$sleep > 9 && input$sleep <= 11){
-        list(src = "Oversleep.png", height = 331, width = 300)
+        list(src = "pictures/Oversleep.png", height = 331, width = 300)
       }
     }, deleteFile = FALSE)
   }

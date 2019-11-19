@@ -36,7 +36,23 @@ shinyUI(fluidPage(
              mainPanel(
                plotOutput('scatterplot')
              )),
-    tabPanel("CheckBoxes")),
+    tabPanel("Sleep Simulation", 
+             sidebarPanel(
+               numericInput("hoursOfSleep", label = h3("Please enter in hours of sleep"), value = 1),
+               selectInput("depressionLevel", label = h3("Please choose depression level"), 
+                           choices = list("Low" = 0, "Medium" = 2, "High" = 4), 
+                           selected = 1),
+               selectInput("anxietyLevel", label = h3("Please choose anxiety level"), 
+                           choices = list("Low" = 0, "Medium" = 2, "High" = 4), 
+                           selected = 1),
+               selectInput("stressLevel", label = h3("Please choose stress level"), 
+                           choices = list("Low" = 0, "Medium" = 2, "High" = 4), 
+                           selected = 1),
+               numericInput("numberOfDrinks", label = h3("Please enter in number of drinks taken"), value = 1),
+               actionButton("simulate", label = "Simulate"),
+               hr(),
+               actionButton("reset", label = "Reset")
+             ))),
 
   )
 )
