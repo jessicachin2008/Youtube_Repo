@@ -1,14 +1,13 @@
 library(shiny)
 shinyServer(
   function(input, output) {
-    output$boxplot <- renderPlot({ sleep_data %>%
-        select(GPA, AverageSleep) %>%
-        mutate(amount_of_sleep = case_when(AverageSleep < 7 ~ "Too Little",
-                                           AverageSleep >= 7 &
-                                             AverageSleep <= 9 ~ "Healthy Sleep",
-                                           AverageSleep > 9 ~ "Too Much")) %>%
-      ggplot(aes(x = amount_of_sleep, y = GPA)) +
-      geom_boxplot() })
+    output$trend <- renderPlot({ sleep_data %>%
+        select(input$select1, input$select2) %>% 
+        ggplot(aes(x = sleep_data[[input$select1]] , y = sleep_data[[input$select2]], group = 1)) +
+        stat_smooth(method = "loess") +
+        labs(x = input$select1,
+             y = input$select2)
+    })
     output$scatterplot <- renderPlot({ combined_sleep_data %>%
         filter(AverageSleep < input$sleep + 1 & AverageSleep > input$sleep - 1) %>%
       ggplot(aes(x = GPA)) +
