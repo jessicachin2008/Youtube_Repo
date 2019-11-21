@@ -2,6 +2,7 @@ library(shiny)
 library(dplyr)
 library(tidyverse)
 library(ggplot2)
+library(rlang)
 sleep_data <- read.csv("data/sleep_study.csv") %>%
   select(GPA, DepressionScore, AnxietyScore,
          StressScore, AlcoholUse, AverageSleep, Drinks)
