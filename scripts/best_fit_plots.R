@@ -1,6 +1,6 @@
 library(dplyr)
 library(tidyverse)
-library(ggplot)
+library(ggplot2)
 library(plotly)
 sleep_data <- read.csv("data/sleep_study.csv") %>%
   select(GPA, DepressionScore, AnxietyScore, StressScore, AlcoholUse, DASScore, AverageSleep, Drinks, Happiness)

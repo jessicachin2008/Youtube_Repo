@@ -1,0 +1,12 @@
+name: SleepApp
+title: SleepApp
+username:
+account: samuel-yj-kim
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1504466
+bundleId: 2605771
+url: https://samuel-yj-kim.shinyapps.io/SleepApp/
+when: 1574301463.95494
+asMultiple: FALSE
+asStatic: FALSE

@@ -42,22 +42,7 @@ shinyServer(
       count <- count + 1
       return(round(happinessScore))
     })
-   # days = 0
-   # observeEvent(input$simulate, {
-   #   days = days + 1
-  #  })
-  #  happiness_data <- data.frame("happinessScore" = happinessScore,
-  #  "days" = rep(input$simulate))
-  #  output$happinessPlot <- renderPlot({ happiness_data %>%
-  #      ggplot(aes(x = days , y = happinessScore)) +
-  #      geom_point()
-  #  })
-  #  observeEvent(input$reset, {
-  #    value = 0
-  #    happiness_data <- data.frame("happinessScore" = NULL, "days" = value)
-  #    output$happinessPlot <- renderPlot({ happiness_data %>%
-  #        ggplot(aes(x = days, y = happinessScore))})
-  #  })
+  
     output$HappinessScore <- renderPrint({
       paste("Happiness Score: ", ObjReact())})
     output$img1 <- renderImage({ #This is where the image is set
