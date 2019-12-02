@@ -95,8 +95,17 @@ shinyUI(fluidPage(
              )),
     tabPanel("About", # the about tab
              mainPanel(
-               h5("This will include a description of our teammates and reason
-                  for the project.")
+               h5("We decided to focus on sleep as our topic because we wanted to know
+                  how sleep can affect college students. Stress, anxiety, and depression
+                  can play a huge role on how many hours a person sleeps per day. We wanted
+                  to observe how mental illness can affect someone's happiness and depicted 
+                  happiness score as one of our visualizations. The other two information
+                  visualizations were based on a slider and trend lines. We hope that our
+                  project can help other college students who suffer from sleep deprivation
+                  to get an idea on what factors can effect a person's sleep cycle. We do not
+                  give any specific soultions but include information that the reader can
+                  analyze and think about what changes they could implement into their lives.
+                  This project was done by Samuel Kim, Jessica Chin, and Abdirihman Mohamud.")
              )))
   )
 )
