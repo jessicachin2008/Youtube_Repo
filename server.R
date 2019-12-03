@@ -16,7 +16,7 @@ shinyServer(
         filter(AverageSleep < input$sleep + 1 &
                  AverageSleep > input$sleep - 1) %>%
       ggplot(aes(x = GPA)) +
-      geom_bar()})
+      geom_histogram(binwidth = 0.5)})
     # start for third tab
     ObjReact <- eventReactive(input$simulate, {
       sleepHours <- as.numeric(input$hoursOfSleep)

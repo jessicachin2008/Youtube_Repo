@@ -14,28 +14,33 @@ shinyUI(fluidPage(theme = shinytheme("darkly"),
   titlePanel(title = "Why Should We Sleep?"), #title
   navbarPage("Sections",
     tabPanel("Trend Lines", # first tab
-             mainPanel(
-               selectInput("select1", label = h4("Parameter 1 (X)"),
-                           choices = list("Depression Score" =
-                                            "DepressionScore",
-                                          "Anxiety Score" = "AnxietyScore",
-                                          "Stress Score" = "StressScore",
-                                          "Number of Drinks" = "Drinks",
-                                          "Average Sleep" = "AverageSleep"),
-                           selected = 1),
-               selectInput("select2", label = h4("Parameter 2 (Y)"),
-                           choices = list("Depression Score" =
-                                            "DepressionScore",
-                                          "Anxiety Score" = "AnxietyScore",
-                                          "Stress Score" = "StressScore",
-                                          "Number of Drinks" = "Drinks",
-                                          "Average Sleep" = "AverageSleep"),
-                           selected = 1),
-               plotOutput("trend"),
-               HTML("The purpose of this information visualization is to allow the user to see the relationship between different
-                    variables and see how it could influence their life. The variables that can be shown on the graph are Depression
-                    Score, Anxiety Score, Stress Score, number of drinks, and average sleep.")
-             )),
+             sidebarLayout(
+               sidebarPanel(
+                 selectInput("select1", label = h4("Parameter 1 (X)"),
+                             choices = list("Depression Score" =
+                                              "DepressionScore",
+                                            "Anxiety Score" = "AnxietyScore",
+                                            "Stress Score" = "StressScore",
+                                            "Number of Drinks" = "Drinks",
+                                            "Average Sleep" = "AverageSleep",
+                                            "GPA" = "GPA"),
+                             selected = "GPA"),
+                 selectInput("select2", label = h4("Parameter 2 (Y)"),
+                             choices = list("Depression Score" =
+                                              "DepressionScore",
+                                            "Anxiety Score" = "AnxietyScore",
+                                            "Stress Score" = "StressScore",
+                                            "Number of Drinks" = "Drinks",
+                                            "Average Sleep" = "AverageSleep",
+                                            "GPA" = "GPA"),
+                             selected = "AverageSleep"),
+                 HTML("The purpose of this information visualization is to allow the user to see the relationship between different
+                        variables and see how it could influence their life. The variables that can be shown on the graph are Depression
+                        Score, Anxiety Score, Stress Score, number of drinks, and average sleep.")
+               ),
+                 mainPanel(
+                   plotOutput("trend")
+                   ))),
     tabPanel("Slider", # second tab
              sidebarPanel(
              sliderInput(
@@ -47,9 +52,13 @@ shinyUI(fluidPage(theme = shinytheme("darkly"),
              ),
              imageOutput("img1")),
              mainPanel(
-               plotOutput("barChart"),
-               HTML("<br> <br> This slider will have the user adjust their hours of sleep and will show a graph that depicts student's GPA
-                    for people with similiar hours of sleep.")
+               HTML("This slider allows you to adjust number of hours
+                  of sleep. A graph will be created to depict the number of
+                  people who received a certain grademark correlated to the
+                  hours of sleep they get. <em>**Keep in mind that these data points
+                  are based on collected data from one school and does not
+                  represent a direct relationship between GPA and hours of sleep.</em><br>"),
+               plotOutput("barChart")
              )),
     tabPanel("Sleep Simulation", # third tab
              sidebarPanel(
@@ -87,17 +96,17 @@ shinyUI(fluidPage(theme = shinytheme("darkly"),
                actionButton("reset", label = "Reset")
              ),
              mainPanel(
-               h5("In this section of our website, we are simulating
-                  how the hours of sleep, depression level, anxiety level,
-                  stress level, and the numbers of drinks affects your
+               HTML("In this section of our application, we are simulating
+                  how the variables; hours of sleep, depression level, anxiety level,
+                  stress level, and the numbers of drinks might affect your
                   overall happiness level. The way we determined the
-                  happiness score was finding the line of regression
-                  for each variable compared to the happiness score
+                  happiness score was by finding the line of regression
+                  for each variable and compared to the happiness score
                   that was provided in the data. Using this, We formulated
-                  a equation that can determine the happiness level of the
-                  person. Make note that this scale is 100% based on data
-                  provided and regression lines, so some of the numbers may
-                  seem off."),
+                  an equation that can determine the happiness level of the
+                  person (on a scale from 1-10, 10 being the happiest). Keep
+                  in mind that this scale is purely based on past data, so these
+                  numbers are not completely accurate."),
                textOutput("HappinessScore"),
                plotOutput("happinessPlot")
              )),
@@ -116,20 +125,23 @@ shinyUI(fluidPage(theme = shinytheme("darkly"),
                   Moderate, Severe, or Extremely Severe - plug them into our visualizations
                   and see what your happinessScore might be. <br> <br>"),
              tagList("URL Link:", url)),
+             HTML("Crisis Text Line: Text HOME to 741741<br>",
+                  "Suicide Prevention Life Line: 1-800-273-8255<br>"),
              tableOutput("DASSscores"),
              ),
     tabPanel("About", # the about tab
              mainPanel(
-               HTML("We decided to focus on sleep as our topic because we wanted to know
-                  how sleep can affect college students. Stress, anxiety, and depression
-                  can play a huge role on how many hours a person sleeps per day. We wanted
-                  to observe how mental illness can affect someone's happiness and depicted 
+               HTML("We decided to focus on sleep as our topic because, as college students, we wanted to know
+                  how sleep affects college students. Stress, anxiety, and depression
+                  can play a huge role on how many hours a person sleeps per day, and the opposite can also be true.
+                  We wanted to observe how mental illness can affect someone's happiness and depicted 
                   happiness score as one of our visualizations. The other two information
-                  visualizations were based on a slider and trend lines. We hope that our
-                  project can help other college students who suffer from sleep deprivation
+                  visualizations we created were sliders and trend lines, both based on the data we collected through Kaggle.com.
+                  We hope that our project can help other college students who suffer from sleep deprivation
                   to get an idea on what factors can effect a person's sleep cycle. We do not
-                  give any specific soultions but include information that the reader can
-                  analyze and think about what changes they could implement into their lives.
+                  have any specific solutions but we did include information for users to
+                  analyze and think about - what changes might you implement into your lives?
+                  
                   This project was done by Samuel Kim, Jessica Chin, and Abdirihman Mohamud.")
              )))
   )
