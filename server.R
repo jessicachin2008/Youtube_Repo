@@ -59,5 +59,8 @@ shinyServer(
         list(src = "pictures/Oversleep.png", height = 331, width = 300)
       }
     }, deleteFile = FALSE)
+    output$DASSscores <- renderTable({
+      DASSScore
+    })
   }
 )

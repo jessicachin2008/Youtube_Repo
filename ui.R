@@ -3,12 +3,15 @@ library(dplyr)
 library(tidyverse)
 library(ggplot2)
 library(rlang)
+library(shinythemes)
+url <- a("Survey Link", href = "https://www.psytoolkit.org/cgi-bin/psy2.4.1/survey?s=A4fYA")
 sleep_data <- read.csv("data/sleep_study.csv") %>%
   select(GPA, DepressionScore, AnxietyScore,
          StressScore, AlcoholUse, AverageSleep, Drinks)
 combined_sleep_data <- read.csv("data/combined_sleep_gpa.csv")
-shinyUI(fluidPage(
-  titlePanel(title = "Sleepy, why?"), #title
+DASSScore <- read.csv("data/dassscore.csv")
+shinyUI(fluidPage(theme = shinytheme("darkly"),
+  titlePanel(title = "Why Should We Sleep?"), #title
   navbarPage("Sections",
     tabPanel("Trend Lines", # first tab
              mainPanel(
@@ -28,7 +31,10 @@ shinyUI(fluidPage(
                                           "Number of Drinks" = "Drinks",
                                           "Average Sleep" = "AverageSleep"),
                            selected = 1),
-               plotOutput("trend")
+               plotOutput("trend"),
+               HTML("The purpose of this information visualization is to allow the user to see the relationship between different
+                    variables and see how it could influence their life. The variables that can be shown on the graph are Depression
+                    Score, Anxiety Score, Stress Score, number of drinks, and average sleep.")
              )),
     tabPanel("Slider", # second tab
              sidebarPanel(
@@ -41,7 +47,9 @@ shinyUI(fluidPage(
              ),
              imageOutput("img1")),
              mainPanel(
-               plotOutput("barChart")
+               plotOutput("barChart"),
+               HTML("<br> <br> This slider will have the user adjust their hours of sleep and will show a graph that depicts student's GPA
+                    for people with similiar hours of sleep.")
              )),
     tabPanel("Sleep Simulation", # third tab
              sidebarPanel(
@@ -93,9 +101,26 @@ shinyUI(fluidPage(
                textOutput("HappinessScore"),
                plotOutput("happinessPlot")
              )),
+    tabPanel("Do It Yourself",
+             mainPanel(
+             HTML("These scores are all based on data collected through Viterbo University. The
+                data was obtained from a sample of students who did skills tests to measure
+                cognitive function, completed a survey asking about attitudes and habits,
+                and kept a sleep diary to record time and quality of sleep over a two-week
+                period in 2016. <br> <br>"),
+             HTML("<em> <b>You should not self-diagnose based on these scores - these visualizations are
+                purely based on data collected through one specific school. </em> </b> <br> <br>"),
+             HTML("You can calculate your own DASS Score (Depression, Anxiety, Stress Scores)
+                  on the link below. After taking the survey, you may compare your scores to
+                  the table to the right and find whether your Scores are Normal, Mild,
+                  Moderate, Severe, or Extremely Severe - plug them into our visualizations
+                  and see what your happinessScore might be. <br> <br>"),
+             tagList("URL Link:", url)),
+             tableOutput("DASSscores"),
+             ),
     tabPanel("About", # the about tab
              mainPanel(
-               h5("We decided to focus on sleep as our topic because we wanted to know
+               HTML("We decided to focus on sleep as our topic because we wanted to know
                   how sleep can affect college students. Stress, anxiety, and depression
                   can play a huge role on how many hours a person sleeps per day. We wanted
                   to observe how mental illness can affect someone's happiness and depicted 
