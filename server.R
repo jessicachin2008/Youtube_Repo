@@ -19,7 +19,7 @@ shinyServer(
         filter(AverageSleep < input$sleep + 1 &
                  AverageSleep > input$sleep - 1) %>%
       ggplot(aes(x = GPA)) +
-      geom_histogram(binwidth = 0.5)})
+      geom_histogram(aes(fill = ..count..), binwidth = 0.5)})
    
      # start for third tab
     score <- reactiveValues(value = 10)
@@ -82,8 +82,8 @@ shinyServer(
                            ) +
         scale_y_continuous(name = "Count", 
                            ) +
-        ggtitle("Frequency histogram of Happiness Score") +
-        theme_bw()
+        ggtitle("Frequency histogram of Happiness Score") 
+        
     }) 
    
     output$img1 <- renderImage({ #This is where the image is set
