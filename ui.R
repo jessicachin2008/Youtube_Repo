@@ -5,6 +5,7 @@ library(ggplot2)
 library(rlang)
 library(shinythemes)
 url <- a("Survey Link", href = "https://www.psytoolkit.org/cgi-bin/psy2.4.1/survey?s=A4fYA")
+github_url <- a("Link", href = "https://github.com/jessicachin2008/team_won")
 sleep_data <- read.csv("data/sleep_study.csv") %>%
   select(GPA, DepressionScore, AnxietyScore,
          StressScore, AlcoholUse, AverageSleep, Drinks)
@@ -39,6 +40,7 @@ shinyUI(fluidPage(theme = shinytheme("darkly"),
                         Score, Anxiety Score, Stress Score, number of drinks, and average sleep.")
                ),
                  mainPanel(
+                   HTML("<h1>Trend Lines with Different Parameters</h1>"),
                    plotOutput("trend")
                    ))),
     tabPanel("Slider", # second tab
@@ -52,7 +54,8 @@ shinyUI(fluidPage(theme = shinytheme("darkly"),
              ),
              imageOutput("img1")),
              mainPanel(
-               HTML("This slider allows you to adjust number of hours
+               HTML("<h1>Average GPA's for a User Determined Amount of Sleep </h1>
+                  This slider allows you to adjust number of hours
                   of sleep. A graph will be created to depict the number of
                   people who received a certain grademark correlated to the
                   hours of sleep they get. <em>**Keep in mind that these data points
@@ -91,28 +94,40 @@ shinyUI(fluidPage(theme = shinytheme("darkly"),
                  max = 24,
                  value = 0
                ),
+               splitLayout(cellWidths = c("30%", "20%"),
                actionButton("simulate", label = "Simulate"),
-               hr(),
-               actionButton("reset", label = "Reset")
+               actionButton("reset", label = "Reset"))
              ),
              mainPanel(
-               HTML("In this section of our application, we are simulating
+               HTML("<h1>Sleep Simulation</h1>
+                  In this section of our application, we are simulating
                   how the variables; hours of sleep, depression level, anxiety level,
                   stress level, and the numbers of drinks might affect your
-                  overall happiness level. The way we determined the
+                  overall happiness level. Everytime you press the simulate button, 
+                  it simulates one day's happiness score. To convey this information,
+                  we decided to use a histogram so that the user could see the spread
+                  of the happiness scores and how often they would get a certain score.
+                  The way we determined the
                   happiness score was by finding the line of regression
                   for each variable and compared to the happiness score
-                  that was provided in the data. Using this, We formulated
+                  that was provided in the data. Using this, we formulated
                   an equation that can determine the happiness level of the
-                  person (on a scale from 1-10, 10 being the happiest). Keep
-                  in mind that this scale is purely based on past data, so these
-                  numbers are not completely accurate. <br> <br>"),
+                  person (on a scale from 1-10, 10 being the happiest). Also, since
+                  it isn't realistic to reset your happiness every morning, we created
+                  this simulation where until you reset the simulation, it continues to
+                  report your happiness score that is based on the selection and the
+                  previous score that you have simulated.
+                  Keep in mind that this scale is purely based on past data, so these
+                  numbers are not completely accurate. FYI, the initial starting
+                  point is set to 10 just to keep things standardized. <br> <br>"),
                textOutput("HappinessScore"),
+               br(),
                plotOutput("happinessPlot")
              )),
     tabPanel("Do It Yourself",
              mainPanel(
-             HTML("These scores are all based on data collected through Viterbo University. The
+             HTML("<h1>Do It Yourself</h1>
+                These scores are all based on data collected through Viterbo University. The
                 data was obtained from a sample of students who did skills tests to measure
                 cognitive function, completed a survey asking about attitudes and habits,
                 and kept a sleep diary to record time and quality of sleep over a two-week
@@ -131,7 +146,8 @@ shinyUI(fluidPage(theme = shinytheme("darkly"),
              ),
     tabPanel("About", # the about tab
              mainPanel(
-               HTML("We decided to focus on sleep as our topic because, as college students, we wanted to know
+               HTML("<h1>About</h1>
+                  We decided to focus on sleep as our topic because, as college students, we wanted to know
                   how sleep affects college students. Stress, anxiety, and depression
                   can play a huge role on how many hours a person sleeps per day, and the opposite can also be true.
                   We wanted to observe how mental illness can affect someone's happiness and depicted 
@@ -141,8 +157,8 @@ shinyUI(fluidPage(theme = shinytheme("darkly"),
                   to get an idea on what factors can effect a person's sleep cycle. We do not
                   have any specific solutions but we did include information for users to
                   analyze and think about - what changes might you implement into your lives?
-                  
-                  This project was done by Samuel Kim, Jessica Chin, and Abdirihman Mohamud.")
+                  This project was done by Samuel Kim, Jessica Chin, and Abdirihman Mohamud. <br> <br>"),
+                  tagList("GitHub Repository Link:", github_url)
              )))
   )
 )

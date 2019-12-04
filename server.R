@@ -68,7 +68,7 @@ shinyServer(
       values$df <- data.frame(D=d,Score=m)
     })
     
-    output$HappinessScore <- renderPrint({
+    output$HappinessScore <- renderText({
       paste("Happiness Score: ", score$value)
     })
     
