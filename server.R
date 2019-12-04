@@ -52,7 +52,6 @@ shinyServer(
     }) 
    # output$HappinessScore <- renderPrint({
   #    paste("Happiness Score: ", ObjReact())})
-    output$HappinessScore <- renderPrint({input$simulate})
     output$img1 <- renderImage({ #This is where the image is set
       if (input$sleep >= 3 && input$sleep < 5) {
         list(src = "pictures/Dead.png", height = 331, width = 300)
