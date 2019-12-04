@@ -106,7 +106,7 @@ shinyUI(fluidPage(theme = shinytheme("darkly"),
                   an equation that can determine the happiness level of the
                   person (on a scale from 1-10, 10 being the happiest). Keep
                   in mind that this scale is purely based on past data, so these
-                  numbers are not completely accurate."),
+                  numbers are not completely accurate. <br> <br>"),
                textOutput("HappinessScore"),
                plotOutput("happinessPlot")
              )),

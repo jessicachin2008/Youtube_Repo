@@ -5,8 +5,8 @@ account: samuel-yj-kim
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1504466
-bundleId: 2605771
+bundleId: 2638828
 url: https://samuel-yj-kim.shinyapps.io/SleepApp/
-when: 1574301463.95494
+when: 1575433025.64226
 asMultiple: FALSE
 asStatic: FALSE
