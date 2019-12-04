@@ -1,4 +1,5 @@
 library(shiny)
+library(tibble)
 happinessScore <- 10
 count <- c(1)
 shinyServer(
@@ -42,9 +43,16 @@ shinyServer(
       count <- count + 1
       return(round(happinessScore))
     })
-  
-    output$HappinessScore <- renderPrint({
-      paste("Happiness Score: ", ObjReact())})
+    output$happinessPlot <- renderPlot({
+      data_frame() %>%  
+      ggplot(aes(input$simulate, ObjReact())) +
+        geom_point() +
+        xlim(0, 10) +
+        ylim(0, 10)
+    }) 
+   # output$HappinessScore <- renderPrint({
+  #    paste("Happiness Score: ", ObjReact())})
+    output$HappinessScore <- renderPrint({input$simulate})
     output$img1 <- renderImage({ #This is where the image is set
       if (input$sleep >= 3 && input$sleep < 5) {
         list(src = "pictures/Dead.png", height = 331, width = 300)
