@@ -148,10 +148,10 @@ shinyUI(fluidPage(theme = shinytheme("darkly"),
              mainPanel(
                HTML("<h1>Conclusion</h1>
                We found that the correlation between sleep and GPA are not exactly linear, however it is clear that from our analysis
-                    that the ideal sleeping range to increase your HappinessScore and GPA is around 6-9 hours of sleep. <br>
+                    that the ideal sleeping range to increase your happiness score and GPA is around 6-9 hours of sleep. <br><br>
                     We also see that there are definitely more variable that affect our GPA than just number of hours of sleep, like mental
                     illnesses (depression, anxiety, etc.). It is important to get a good amount of sleep to lessen your depression, anxiety, and
-                    stress (DASS) scores as well as finding your best study habits to reach that goal. <br>
+                    stress (DASS) scores as well as finding your best study habits to reach that goal. <br><br>
                     From University of Washington students, best of luck!")
              )),
     tabPanel("About", # the about tab
